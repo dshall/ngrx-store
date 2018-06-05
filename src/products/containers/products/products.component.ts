@@ -5,6 +5,7 @@ import { PizzasService } from '../../services/pizzas.service';
 
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -23,7 +24,7 @@ import * as fromStore from '../../store';
           No pizzas, add one to get started.
         </div>
         <app-pizza-item
-          *ngFor="let pizza of (pizzas)"
+          *ngFor="let pizza of (pizzas$  | async)"
           [pizza]="pizza">
         </app-pizza-item>
       </div>
@@ -31,14 +32,12 @@ import * as fromStore from '../../store';
   `,
 })
 export class ProductsComponent implements OnInit {
-  pizzas: Pizza[];
+  pizzas$: Observable<Pizza[]>;
 
   constructor(private store: Store<fromStore.ProductsState>) {}
 
   ngOnInit() {
-    this.store.select<any>(fromStore.getAllPizzas).subscribe(state => {
-      this.pizzas = state;
-      console.log(state);
-    });
+   this.pizzas$ =  this.store.select(fromStore.getAllPizzas);
+   this.store.dispatch(new fromStore.LoadPizzas);
   }
 }

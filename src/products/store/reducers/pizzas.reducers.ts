@@ -8,66 +8,7 @@ export interface PizzasState {
 }
 
 export const initialState = {
-  data: [
-    {
-            name: 'Blazin Inferno',
-            toppings: [{
-                    id: 10,
-                    name: 'pepperoni'
-                },
-                {
-                    id: 9,
-                    name: 'pepper'
-                },
-                {
-                    id: 3,
-                    name: 'basil'
-                },
-                {
-                    id: 4,
-                    name: 'chili'
-                },
-                {
-                    id: 7,
-                    name: 'olive'
-                },
-                {
-                    id: 2,
-                    name: 'bacon'
-                }
-            ],
-            id: 1
-        },
-        {
-          name: 'Blazin Inferno',
-          toppings: [{
-                  id: 10,
-                  name: 'pepperoni'
-              },
-              {
-                  id: 9,
-                  name: 'pepper'
-              },
-              {
-                  id: 3,
-                  name: 'basil'
-              },
-              {
-                  id: 4,
-                  name: 'chili'
-              },
-              {
-                  id: 7,
-                  name: 'olive'
-              },
-              {
-                  id: 2,
-                  name: 'bacon'
-              }
-          ],
-          id: 1
-      }
-  ],
+  data: [],
   loaded: false,
   loading: false
 };
@@ -85,10 +26,13 @@ export function reducer(
     }
 
     case fromPizzas.LOAD_PIZZAS_SUCCESS: {
+      const data = action.payload;
+      console.log('PAYLOAD', action.payload);
       return {
         ...state,
         loading: false,
-        loaded: true
+        loaded: true,
+        data
       };
     }
 
