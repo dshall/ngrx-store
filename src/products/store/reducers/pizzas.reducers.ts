@@ -8,7 +8,66 @@ export interface PizzasState {
 }
 
 export const initialState = {
-  data: [],
+  data: [
+    {
+            name: 'Blazin Inferno',
+            toppings: [{
+                    id: 10,
+                    name: 'pepperoni'
+                },
+                {
+                    id: 9,
+                    name: 'pepper'
+                },
+                {
+                    id: 3,
+                    name: 'basil'
+                },
+                {
+                    id: 4,
+                    name: 'chili'
+                },
+                {
+                    id: 7,
+                    name: 'olive'
+                },
+                {
+                    id: 2,
+                    name: 'bacon'
+                }
+            ],
+            id: 1
+        },
+        {
+          name: 'Blazin Inferno',
+          toppings: [{
+                  id: 10,
+                  name: 'pepperoni'
+              },
+              {
+                  id: 9,
+                  name: 'pepper'
+              },
+              {
+                  id: 3,
+                  name: 'basil'
+              },
+              {
+                  id: 4,
+                  name: 'chili'
+              },
+              {
+                  id: 7,
+                  name: 'olive'
+              },
+              {
+                  id: 2,
+                  name: 'bacon'
+              }
+          ],
+          id: 1
+      }
+  ],
   loaded: false,
   loading: false
 };
@@ -45,3 +104,8 @@ export function reducer(
   }
   return state;
 }
+
+export const getPizzaLoading = (state: PizzasState) => state.loading;
+export const getPizzaLoaded = (state: PizzasState) => state.loaded;
+export const getPizza = (state: PizzasState) => state.data;
+
