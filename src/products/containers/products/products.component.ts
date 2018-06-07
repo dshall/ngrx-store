@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
         </a>
       </div>
       <div class="products__list">
-        <div *ngIf="!((pizzas)?.length)">
+        <div *ngIf="!((pizzas$))">
           No pizzas, add one to get started.
         </div>
         <app-pizza-item

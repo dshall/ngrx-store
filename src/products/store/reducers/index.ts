@@ -18,6 +18,16 @@ export const getPizzaState = createSelector(getProductsState, (state: ProductsSt
 );
 
 // get each individual state from the state ProductsState tree Products -> pizzas -> data -> loaded -> loading
-export const getAllPizzas = createSelector(getPizzaState, fromPizzas.getPizza);
+
 export const getPizzaLoaded = createSelector(getPizzaState, fromPizzas.getPizzaLoaded);
 export const getPizzaLoading = createSelector(getPizzaState, fromPizzas.getPizzaLoading);
+export const getPizzasEntities = createSelector(getPizzaState, fromPizzas.getPizzaEntities);
+
+export const getAllPizzas = createSelector(
+  getPizzasEntities,
+  (entities) => {
+    return Object.keys(entities).map(id => entities[parseInt(id, 10)]);
+  }
+);
+
+
